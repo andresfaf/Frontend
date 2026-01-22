@@ -1,0 +1,157 @@
+.aprende {
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  color: #1f2937; 
+}
+
+.aprende__title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 8px 0 20px;
+}
+
+.aprende__features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+  justify-items: center;
+  padding: 8px 0 24px;
+  border-bottom: 1px solid #e5e7eb; /* línea separadora suave */
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature__icon {
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+  border: 3px solid #e5e7eb;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature__icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feature__text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.aprende__banner {
+  position: relative;
+  margin-top: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 220px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #e5e7eb;
+}
+
+.banner__overlay {
+  width: 100%;
+  height: 100%;
+  padding: 28px 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 24, 39, 0.55),
+    rgba(17, 24, 39, 0.65)
+  );
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.banner__sub {
+  max-width: 900px;
+  font-size: 14px;
+  opacity: 0.95;
+  margin: 0 0 10px;
+}
+
+.banner__title {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(18px, 3.2vw, 28px);
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .aprende__features {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 580px) {
+  .aprende__features {
+    grid-template-columns: 1fr;
+  }
+  .feature__icon {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+.banner-simple {
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 28px 16px;
+  color: #fff;
+  opacity: 60;
+}
+
+.banner-simple__sub,
+.banner-simple__title {
+  margin: 0;
+  max-width: 900px;
+}
+
+.banner-simple__sub {
+  font-size: 14px;
+  margin-bottom: 8px;
+  opacity: 0.95;
+}
+
+.banner-simple__title {
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+
+

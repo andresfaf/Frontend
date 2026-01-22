@@ -1,12 +1,11 @@
 
-import "./registro.css";
+import "../assets/styles/registro.css";
 import Foto from "../assets/HeaderFondo.jpg";
 
 export default function Registro() {
   return (
     <section className="container">
       <div className="row g-4 align-items-center">
-        {/* IZQUIERDA: Imagen con borde azul (50% en lg+) */}
         <div className="col-12 col-lg-6">
           <div className="frame-wrap">
             <div className="frame-img ratio ratio-4x3">
@@ -15,7 +14,6 @@ export default function Registro() {
           </div>
         </div>
 
-        {/* DERECHA: Formulario (50% en lg+) */}
         <div className="col-12 col-lg-6">
           <div className="form-card p-4 p-md-5">
             <h3 className="h4 fw-semibold text-center">Regístrate</h3>

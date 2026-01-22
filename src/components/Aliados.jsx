@@ -8,7 +8,7 @@ import ScrumStudy from '../assets/ScrumStudy.jpg';
 import InterSoftware from '../assets/InterSoftware.jpg';
 import Arcitura from '../assets/Arcitura.png';
 
-import './aliados.css';
+import '../assets/styles/aliados.css';
 
 function Aliados() {
   return (
@@ -24,8 +24,6 @@ function Aliados() {
             </h6>
           </div>
         </div>
-
-        {/* Fila de logos */}
         <div className="row g-3 allies-row mt-2">
           <div className="ally-col col-6 col-sm-4 col-md-3 col-lg-1-8">
             <div className="ally-box">

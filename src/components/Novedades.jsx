@@ -1,6 +1,5 @@
 
-import './novedades.css';
-// Reemplaza por tus imágenes reales
+import '../assets/styles/novedades.css';
 import ImgHero from "../assets/HeaderFondo.jpg";
 import ImgA from "../assets/HeaderFondo.jpg";
 import ImgB from "../assets/HeaderFondo.jpg";
@@ -13,21 +12,15 @@ export default function Novedades() {
       <section className="container my-3">
         <h2 className="h4 fw-semibold mb-4">Novedades</h2>
 
-        {/* Grid principal */}
         <div className="row g-3 px-4">
-          {/* IZQUIERDA: 12 en md, 6 en lg */}
           <div className="col-12 col-md-12 col-lg-6">
-            {/* Imagen con bordes redondeados */}
             <div className="ratio ratio-16x9 rounded-3 overflow-hidden bg-light">
               <img src={ImgHero} alt="Bienvenidos a izyAcademy" />
             </div>
 
-            {/* Banda/título a ancho completo */}
             <div className="nvd-full-title text-white fw-semibold px-3 py-2 my-2 text-center">
               Bienvenidos a izyAcademy
             </div>
-
-            {/* Texto justificado */}
             <p className="mb-0 text-justify">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod urna et auctor posuere.
               Morbi vitae posuere lorem. Quisque in commodo lacus. Maecenas rhoncus, nibh id facilisis convallis,
@@ -35,11 +28,8 @@ export default function Novedades() {
               pellentesque, magna nibh pulvinar justo, eget dapibus eros lorem in sem.
             </p>
           </div>
-
-          {/* DERECHA: 12 en md (debajo), 6 en lg */}
           <div className="col-12 col-md-12 col-lg-6">
             <div className="row g-3">
-              {/* 1 */}
               <div className="col-12 col-md-6 col-600-12">
                 <div className="ratio ratio-16x9 rounded-3 overflow-hidden bg-light">
                   <img src={ImgA} alt="Generación de comunidad" loading="lazy" />
@@ -53,7 +43,6 @@ export default function Novedades() {
                 </p>
               </div>
 
-              {/* 2 */}
               <div className="col-12 col-md-6 col-600-12">
                 <div className="ratio ratio-16x9 rounded-3 overflow-hidden bg-light">
                   <img src={ImgB} alt="Transferencia de conocimiento" loading="lazy" />
@@ -67,7 +56,6 @@ export default function Novedades() {
                 </p>
               </div>
 
-              {/* 3 */}
               <div className="col-12 col-md-6 col-600-12">
                 <div className="ratio ratio-16x9 rounded-3 overflow-hidden bg-light">
                   <img src={ImgC} alt="Certificaciones e insignias" loading="lazy" />
@@ -81,7 +69,6 @@ export default function Novedades() {
                 </p>
               </div>
 
-              {/* 4 */}
               <div className="col-12 col-md-6 col-600-12">
                 <div className="ratio ratio-16x9 rounded-3 overflow-hidden bg-light">
                   <img src={ImgD} alt="Apropiación del conocimiento" loading="lazy" />

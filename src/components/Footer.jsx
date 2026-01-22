@@ -1,17 +1,15 @@
-
-import "./footer.css";
-import logo from "../assets/Logo.png"; // opcional
+import "../assets/styles/footer.css";
+import logo from "../assets/Logo.png";
 
 export default function Footer() {
   return (
-    // No uses <footer className="container ..."> — quitamos el container para que sea full width
     <footer className="site-footer w-100">
-      {/* FONDO AZUL A PANTALLA COMPLETA */}
+
       <div className="footer-bg container-fluid">
-        {/* Contenido alineado dentro (elige container, container-lg o container-xl) */}
+
         <div className="footer-inner container py-4 py-md-5">
           <div className="row g-4 g-md-5">
-            {/* Columna 1 */}
+
             <div className="col-12 col-sm-6 col-lg-3 col-xl-2">
               <h6 className="footer-title mb-4">Contáctanos</h6>
               <ul className="footer-list">
@@ -21,7 +19,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Columna 2 */}
             <div className="col-12 col-sm-6 col-lg-3 col-xl-2">
               <h6 className="footer-title  mb-4">Categorías de Cursos</h6>
               <ul className="footer-list">
@@ -35,7 +32,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Columna 3 */}
             <div className="col-12 col-sm-6 col-lg-3 col-xl-2">
               <h6 className="footer-title  mb-4">Certificaciones</h6>
               <ul className="footer-list">
@@ -50,7 +46,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Columna 4 */}
             <div className="col-12 col-sm-6 col-lg-3 col-xl-3">
               <h6 className="footer-title  mb-4">Q‑Vision Technologies</h6>
               <ul className="footer-list">
@@ -62,21 +57,18 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Columna 5 */}
             <div className="col-12 col-sm-6 col-lg-12 col-xl-3">
               <h6 className="footer-title mb-4">Soporte</h6>
               <ul className="footer-list">
-                <li style={{opacity: '50%'}}>Si tienes inconvenientes o dudas, contáctanos al correo</li>
+                <li style={{ opacity: '50%' }}>Si tienes inconvenientes o dudas, contáctanos al correo</li>
                 <li><a className="footer-link" href="mailto:izyacademy@qvision.us">izyacademy@qvision.us</a></li>
               </ul>
             </div>
           </div>
 
           <hr />
-          {/* Línea de términos / políticas */}
 
           <div className="row mt-4 align-items-center gy-3">
-            {/* IZQUIERDA: Logo */}
             <div className="col-12 col-md-4 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start order-1 order-md-1">
               {logo ? (
                 <img src={logo} alt="IzyAcademy" height="28" className="opacity-85" />
@@ -85,7 +77,6 @@ export default function Footer() {
               )}
             </div>
 
-            {/* CENTRO: Términos */}
             <div className="col-12 col-md-4 col-lg-6 order-3 order-md-2">
               <div className="footer-terms d-flex flex-wrap justify-content-center gap-2 text-center">
                 <a href="#terminos" className="footer-link">Términos y Condiciones</a>
@@ -94,7 +85,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* DERECHA: Redes sociales */}
             <div className="col-12 col-md-4 col-lg-3 d-flex justify-content-center justify-content-lg-end order-2 order-md-3">
               <div className="d-inline-flex gap-3">
                 <a href="#" className="footer-social-link" aria-label="Facebook"><i className="bi bi-facebook"></i></a>
@@ -106,9 +96,6 @@ export default function Footer() {
             </div>
           </div>
 
-
-          {/* Social + Copyright */}
-
           <div className="row mt-3 mt-md-4 justify-content-center">
             <div className="col-12 text-center">
               <small className="opacity-85">
@@ -116,7 +103,6 @@ export default function Footer() {
               </small>
             </div>
           </div>
-
         </div>
       </div>
     </footer>

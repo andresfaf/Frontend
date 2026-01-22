@@ -2,16 +2,57 @@
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import "./header.css";
+import "../assets/styles/header.css";
 
-import HeaderFondo from "../assets/HeaderFondo.jpg"; // izquierda
-import HeaderGrupo from "../assets/HeaderGrupo.jpg";  // derecha
+import HeaderFondo from "../assets/HeaderFondo.jpg";
+import HeaderGrupo from "../assets/HeaderGrupo.jpg";
 import Logo from "../assets/Logo.png";
 
 export default function Header() {
   return (
     <>
-      {/* NAVBAR superpuesto y transparente */}
+
+      <div
+        class="modal fade"
+        id="miModal"
+        tabindex="-1"
+        aria-labelledby="miModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title" id="miModalLabel">Inicie sesión en su cuenta</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <form >
+                <div className="mb-3">
+                  <label htmlFor="nombre" className="form-label">Correo electrónico</label>
+                  <input type="text" id="nombre" className="form-control" required />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">Contraseña</label>
+                  <input type="password" id="password" className="form-control" required />
+                </div>
+                <button type="submit" className="btn btn-primary w-100 submit-btn">
+                  Acceder
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
       <Navbar
         expand="lg"
         className="navbar-overlay z-3"
@@ -30,7 +71,7 @@ export default function Header() {
               <NavDropdown title="Rutas de Formación" id="routes-dd" className="me-4">
                 <NavDropdown.Item as={Link} to="/ruta/frontend">Cientifico De Datos</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/ruta/backend">Ruta de Formación En .NET</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/ruta-formacion-net">Ruta de Formación En .NET</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to="/ruta/datos">Ruta de Formación en Automatización</NavDropdown.Item>
               </NavDropdown>
@@ -45,7 +86,10 @@ export default function Header() {
             </Nav>
 
             <Nav className="ms-lg-3">
-              <Nav.Link as={Link} to="/login" className="d-flex align-items-center gap-2">
+              <Nav.Link as={Link} to="/login"
+                data-bs-toggle="modal"
+                data-bs-target="#miModal"
+                className="d-flex align-items-center gap-2">
                 <i className="bi bi-person me-2" aria-hidden="true"></i>
                 <span>Iniciar sesión</span>
               </Nav.Link>
@@ -58,17 +102,10 @@ export default function Header() {
         </Container>
       </Navbar>
 
-      {/* HERO ocupa todo el alto detrás del navbar */}
       <section className="hero-wrap position-relative overflow-hidden" aria-label="Sección principal de bienvenida">
-        {/* Lado izquierdo */}
         <div className="hero-left" style={{ backgroundImage: `url(${HeaderFondo})` }} aria-hidden="true" />
-        {/* Lado derecho */}
         <div className="hero-right only-image" style={{ backgroundImage: `url(${HeaderGrupo})` }} aria-hidden="true" />
-
-        {/* Degradado sutil para legibilidad del texto sobre el lado izquierdo */}
         <div className="hero-overlay" aria-hidden="true" />
-
-        {/* Contenido centrado */}
         <div className="container position-relative hero-content">
           <h1 className="display-4 fw-semibold text-white text-center mb-3">
             Continúa tu formación con <span className="brand">izyAcademy</span>

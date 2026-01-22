@@ -1,0 +1,42 @@
+
+/* ====== LAYOUT: 8 columnas exactas en >= lg ====== */
+@media (min-width: 992px) {
+  .col-lg-1-8 {
+    flex: 0 0 12.5%;
+    max-width: 12.5%;
+  }
+}
+
+/* ====== BOX UNIFORME POR LOGO ====== */
+.ally-box {
+  height: clamp(72px, 9vw, 110px); /* altura responsive del cuadro */
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;     /* centra verticalmente */
+  justify-content: center; /* centra horizontalmente */
+  padding: 12px;           /* aire interno para logos con margen */
+}
+
+/* Las imágenes no se deforman y se ajustan al box */
+.ally-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Densidades opcionales */
+@media (max-width: 576px) {
+  .ally-box { padding: 10px; }
+}
+@media (min-width: 1400px) {
+  .ally-box { height: clamp(90px, 8vw, 140px); }
+}
+
+
+.ally-box:hover {
+  transform: scale(1.3);               
+  cursor: pointer;                      
+}
+

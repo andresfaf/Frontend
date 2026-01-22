@@ -1,0 +1,29 @@
+
+:root{
+  --blue-outer: #1D3A6C;  /* borde principal */
+  --blue-inner: #6f8fbf;  /* línea interior suave */
+  --radius-xl: 18px;
+}
+
+
+
+.submit-btn{
+  background-color: var(--blue-outer);
+}
+
+/* ===== Responsive ===== */
+/* En pantallas medianas o menores, que se apile (imagen arriba, form abajo) ya lo maneja el grid Bootstrap con col-12 */
+@media (max-width: 991.98px){
+  .frame-wrap{ margin-inline: auto; max-width: 680px; }
+  .form-card{ margin-inline: auto; max-width: 680px; }
+}
+@media (max-width: 575.98px){
+  .frame-wrap{ padding: 10px; }
+  .frame-wrap::before{ inset: 6px; }
+  .frame-wrap::after{ inset: 12px; }
+}
+
+.link{
+  color: var(--blue-outer);
+  text-decoration: none;
+}

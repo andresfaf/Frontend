@@ -1,0 +1,158 @@
+
+:root {
+  --nav-h: 64px;                 /* alto aproximado del navbar */
+  --hero-height: clamp(420px, 60vh, 560px);
+  --right-cut: 44vw;             /* cuánto ocupa la imagen derecha (ajusta si quieres mover el corte) */
+  --right-overlay-opacity: 0.25; /* oscurecer un poco la imagen derecha */
+  --hero-tint: rgba(15, 51, 105, 0.55); /* tonalidad azul global (ajusta 0.35–0.70) */
+}
+
+/* ===== NAVBAR superpuesto ===== */
+.navbar-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: transparent !important; /* totalmente transparente */
+  border: 0;
+}
+
+/* Opcional: sutil fondo para legibilidad (degradado + blur) */
+/*
+.navbar-overlay {
+  background: linear-gradient(180deg, rgba(2,10,22,0.55) 0%, rgba(2,10,22,0.20) 100%) !important;
+  backdrop-filter: blur(2px);
+}
+*/
+
+/* Links blancos para contraste sobre las imágenes */
+.navbar-overlay .nav-link,
+.navbar-overlay .navbar-brand,
+.navbar-overlay .navbar-toggler {
+  color: #fff !important;
+}
+
+/* ===== HERO ===== */
+.hero-wrap {
+  height: var(--hero-height);
+  padding-top: var(--nav-h);  /* evita que el texto se esconda bajo el navbar */
+  position: relative;
+  isolation: isolate;         /* asegura capas correctas con pseudo-elemento ::after */
+}
+
+/* === TINTE AZUL GLOBAL SOBRE TODAS LAS IMÁGENES === */
+/* Opción 1: tonalidad uniforme (RECOMENDADA) */
+.hero-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-tint);
+  z-index: 1;            /* por encima de las imágenes, por debajo del contenido */
+  pointer-events: none;
+}
+
+/* Opción 2: degradado azul (más fuerte a la izquierda) — DESCOMENTAR si prefieres
+.hero-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 51, 105, 0.70) 0%,
+    rgba(15, 51, 105, 0.55) 40%,
+    rgba(15, 51, 105, 0.35) 65%,
+    rgba(15, 51, 105, 0.20) 80%,
+    rgba(15, 51, 105, 0.00) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+*/
+
+/* Izquierda: fondo 1 */
+.hero-left {
+  position: absolute;
+  inset: 0 calc(var(--right-cut)) 0 0; /* ocupa hasta el borde donde inicia la imagen derecha */
+  background-size: cover;
+  background-position: center 35%;
+  filter: saturate(1.05);
+  z-index: 0;
+}
+
+/* Derecha: foto 2 */
+.hero-right.only-image {
+  position: absolute;
+  inset: 0 0 0 calc(100% - var(--right-cut));
+  background-size: cover;
+  background-position: center right;
+  filter: contrast(1.02) brightness(1.02);
+  z-index: 0;
+}
+
+/* Oscurecer un poco solo la imagen derecha (opcional) */
+.hero-right.only-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, var(--right-overlay-opacity));
+  pointer-events: none;
+}
+
+/* Degradado para legibilidad adicional del texto en la parte izquierda */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 22, 46, 0.75) 0%,
+    rgba(8, 22, 46, 0.55) 35%,
+    rgba(8, 22, 46, 0.25) 60%,
+    rgba(8, 22, 46, 0.00) 85%
+  );
+  pointer-events: none;
+  z-index: 1; /* igual que el tinte; ambos quedan debajo del contenido */
+}
+
+/* Contenido centrado */
+.hero-content {
+  position: relative;
+  z-index: 2; /* por encima del tinte y del overlay */
+  height: calc(var(--hero-height) - var(--nav-h)); /* descuenta el navbar */
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+.brand {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  :root { --right-cut: 52vh; }
+
+  .hero-left {
+    inset: 0 0 40% 0;
+    background-position: center top;
+  }
+
+  .hero-right.only-image {
+    inset: 60% 0 0 0;
+    background-position: center;
+    filter: brightness(0.85) contrast(1.0);
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 22, 46, 0.70) 0%,
+      rgba(8, 22, 46, 0.35) 60%,
+      rgba(8, 22, 46, 0.00) 100%
+    );
+  }
+
+  .hero-content {
+    height: calc(var(--hero-height) - var(--nav-h));
+  }
+}

@@ -1,0 +1,75 @@
+
+:root{
+  --footer-bg: #1D3A6C;
+   --footer-text: #EAF1FF;
+  --footer-text-dim: #C7D4EE;
+  --footer-link: #EAF1FF;
+  --footer-link-hover: #F2C744;
+}
+
+/* Full width background strip */
+.site-footer .footer-bg{
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Optional: remove body default margins to truly edge-to-edge if needed */
+html, body { margin: 0; padding: 0; }
+
+/* Inner content container (keeps nice readable width) */
+.site-footer .footer-inner{
+  color: var(--footer-text);
+}
+
+/* Titles */
+.footer-title{
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: .2px;
+  margin-bottom: .5rem;
+  color: #FFF;
+}
+
+/* Lists */
+.footer-list{
+  list-style: none;
+  padding-left: 0;
+}
+.footer-list li{
+  font-size: .94rem;
+  color: var(--footer-text-dim);
+  margin: .25rem 0;
+}
+
+/* Links */
+.footer-link{
+  color: var(--footer-link);
+  text-decoration: none;
+}
+.footer-link:hover{
+  color: var(--footer-link-hover);
+  text-decoration: underline;
+}
+
+/* Terms */
+.footer-terms{
+  font-size: .92rem;
+}
+
+/* Social */
+.footer-social-link{
+  color: #fff;
+  font-size: 1.125rem;
+  opacity: .9;
+}
+.footer-social-link:hover{
+  color: var(--footer-link-hover);
+  opacity: 1;
+}
+
+/* Small utility */
+.opacity-85 { opacity: .85; }

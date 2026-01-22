@@ -61,15 +61,15 @@ export default function Header() {
         localStorage.setItem("usuario", user);
         setUser(user)
         alert("Usuario autenticado correctamente!")
+        setForm({ email: "", password: "" });
+        setErrors({});
+        setLoginError("");
         setShow(false)
       } catch (error) {
         console.error("Error al iniciar sesión:", error.message);
         setLoginError("Correo o contraseña incorrectos");
       } finally {
         setLoading(false);
-        setForm({ email: "", password: "" });
-        setErrors({});
-        setLoginError("");
       }
     }
   };

@@ -1,24 +1,92 @@
-
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "../assets/styles/header.css";
-
 import HeaderFondo from "../assets/HeaderFondo.jpg";
 import HeaderGrupo from "../assets/HeaderGrupo.jpg";
 import Logo from "../assets/Logo.png";
+import { useState } from "react";
+import { URL } from "../utils/constantes";
 
 export default function Header() {
 
-  const user = localStorage.getItem("user")
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
+
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [loginError, setLoginError] = useState("");
+
+  const [user, setUser] = useState(localStorage.getItem("user"));
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!form.email.trim()) newErrors.email = "El correo es obligatorio";
+    if (!form.password) newErrors.password = "La contraseña es obligatoria";
+    return newErrors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoginError("");
+    const validationErrors = validate();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      setLoading(true);
+      try {
+        const response = await fetch(`${URL}/usuarios/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: form.email,
+            password: form.password
+          })
+        });
+
+        if (!response.ok) {
+          setLoginError("Correo o contraseña incorrectos");
+        }
+
+        const data = await response.json();
+        // Guardar usuario en localStorage
+        let user = `${data.nombre} ${data.apellido}`
+        localStorage.setItem("usuario", user);
+        setUser(user)
+        // eslint-disable-next-line no-debugger
+        debugger;
+        // Cerrar modal manualmente (Bootstrap 5)
+        const modalEl = document.getElementById("miModal");
+        const modal = window.bootstrap.Modal.getInstance(modalEl);
+        if (modal) modal.hide();
+
+      } catch (error) {
+        console.error("Error al iniciar sesión:", error.message);
+        setLoginError("Correo o contraseña incorrectos");
+      } finally {
+        setLoading(false);
+        setForm({ email: "", password: "" });
+        setErrors({});
+        setLoginError("");
+      }
+    }
+  };
 
   return (
     <>
 
+      {/* Modal de login */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="miModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="miModalLabel"
         aria-hidden="true"
       >
@@ -36,22 +104,32 @@ export default function Header() {
             </div>
 
             <div class="modal-body">
-              <form >
+              <form onSubmit={handleSubmit} noValidate>
+
+                {/* Email */}
                 <div className="mb-3">
-                  <label htmlFor="nombre" className="form-label">Correo electrónico</label>
-                  <input type="text" id="nombre" className="form-control" required />
+                  <label htmlFor="email" className="form-label">Correo electrónico</label>
+                  <input type="email" id="email" name="email" className="form-control" value={form.email}
+                    onChange={handleChange} required />
+                  {errors.email && <small className="text-danger">{errors.email}</small>}
                 </div>
 
+                {/* Password */}
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label">Contraseña</label>
-                  <input type="password" id="password" className="form-control" required />
+                  <input type="password" id="password" name="password" className="form-control" value={form.password}
+                    onChange={handleChange} required />
+                  {errors.password && <small className="text-danger">{errors.password}</small>}
                 </div>
-                <button type="submit" className="btn btn-primary w-100 submit-btn">
-                  Acceder
+
+                {/* Error de login */}
+                {loginError && <div className="alert alert-danger">{loginError}</div>}
+
+                <button type="submit" className="btn btn-primary w-100 submit-btn" disabled={loading}>
+                  {loading ? "Accediendo..." : "Acceder"}
                 </button>
               </form>
             </div>
-
           </div>
         </div>
       </div>

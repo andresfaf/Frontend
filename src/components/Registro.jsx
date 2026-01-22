@@ -1,4 +1,4 @@
-import "./registro.css";
+import "../assets/styles/registro.css";
 import Foto from "../assets/HeaderFondo.jpg";
 import { useState } from "react";
 import { URL } from "../utils/constantes";

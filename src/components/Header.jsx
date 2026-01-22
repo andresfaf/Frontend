@@ -57,10 +57,11 @@ export default function Header() {
         }
 
         const data = await response.json();
-        let user = `${data.nombre} ${data.apellido}`
+        let user = `${data.nombre} ${data.apellidos}`
         localStorage.setItem("usuario", user);
         setUser(user)
-
+        alert("Usuario autenticado correctamente!")
+        setShow(false)
       } catch (error) {
         console.error("Error al iniciar sesión:", error.message);
         setLoginError("Correo o contraseña incorrectos");
@@ -69,7 +70,6 @@ export default function Header() {
         setForm({ email: "", password: "" });
         setErrors({});
         setLoginError("");
-        setShow(false)
       }
     }
   };

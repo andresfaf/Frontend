@@ -62,10 +62,11 @@ export default function Header() {
         setUser(user)
         // eslint-disable-next-line no-debugger
         debugger;
-        // Cerrar modal manualmente (Bootstrap 5)
-        const modalEl = document.getElementById("miModal");
-        const modal = window.bootstrap.Modal.getInstance(modalEl);
-        if (modal) modal.hide();
+        const modalEl = document.getElementById('miModal');
+        let modal = window.bootstrap.Modal.getInstance(modalEl);
+        if (!modal) modal = new window.bootstrap.Modal(modalEl);
+        modal.hide();
+
 
       } catch (error) {
         console.error("Error al iniciar sesión:", error.message);

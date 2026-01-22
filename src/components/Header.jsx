@@ -18,6 +18,7 @@ export default function Header() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [show, setShow] = useState(false);
 
   const [user, setUser] = useState(localStorage.getItem("user"));
 
@@ -56,17 +57,9 @@ export default function Header() {
         }
 
         const data = await response.json();
-        // Guardar usuario en localStorage
         let user = `${data.nombre} ${data.apellido}`
         localStorage.setItem("usuario", user);
         setUser(user)
-        // eslint-disable-next-line no-debugger
-        debugger;
-        const modalEl = document.getElementById('miModal');
-        let modal = window.bootstrap.Modal.getInstance(modalEl);
-        if (!modal) modal = new window.bootstrap.Modal(modalEl);
-        modal.hide();
-
 
       } catch (error) {
         console.error("Error al iniciar sesión:", error.message);
@@ -76,6 +69,7 @@ export default function Header() {
         setForm({ email: "", password: "" });
         setErrors({});
         setLoginError("");
+        setShow(false)
       }
     }
   };
@@ -85,11 +79,13 @@ export default function Header() {
 
       {/* Modal de login */}
       <div
-        className="modal fade"
+        className={`modal fade ${show ? "show d-block" : ""}`}
         id="miModal"
         tabIndex="-1"
-        aria-labelledby="miModalLabel"
-        aria-hidden="true"
+        role="dialog"
+        aria-modal={show ? "true" : undefined}
+        aria-hidden={show ? "false" : "true"}
+
       >
         <div class="modal-dialog">
           <div class="modal-content">
@@ -99,8 +95,7 @@ export default function Header() {
               <button
                 type="button"
                 class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
+                onClick={() => setShow(false)}
               ></button>
             </div>
 
@@ -170,14 +165,16 @@ export default function Header() {
             <Nav className="ms-lg-3">
               {
                 !user ?
-                  <Nav.Link as={Link} to="/login"
-                    data-bs-toggle="modal"
-                    data-bs-target="#miModal"
+                  <Nav.Link as={Link}
+                    onClick={() => setShow(true)}
                     className="d-flex align-items-center gap-2">
                     <i className="bi bi-person me-2" aria-hidden="true"></i>
                     <span>Iniciar sesión</span>
                   </Nav.Link>
-                  : <span>{user}</span>
+                  : <Nav.Link as={Link}
+                    className="d-flex align-items-center gap-2">
+                    <span>{user}</span>
+                  </Nav.Link>
               }
 
               <Nav.Link as={Link} to="/login" className="d-flex align-items-center gap-2">

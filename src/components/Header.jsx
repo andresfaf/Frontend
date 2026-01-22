@@ -9,6 +9,9 @@ import HeaderGrupo from "../assets/HeaderGrupo.jpg";
 import Logo from "../assets/Logo.png";
 
 export default function Header() {
+
+  const user = localStorage.getItem("user")
+
   return (
     <>
 
@@ -86,13 +89,18 @@ export default function Header() {
             </Nav>
 
             <Nav className="ms-lg-3">
-              <Nav.Link as={Link} to="/login"
-                data-bs-toggle="modal"
-                data-bs-target="#miModal"
-                className="d-flex align-items-center gap-2">
-                <i className="bi bi-person me-2" aria-hidden="true"></i>
-                <span>Iniciar sesión</span>
-              </Nav.Link>
+              {
+                !user ?
+                  <Nav.Link as={Link} to="/login"
+                    data-bs-toggle="modal"
+                    data-bs-target="#miModal"
+                    className="d-flex align-items-center gap-2">
+                    <i className="bi bi-person me-2" aria-hidden="true"></i>
+                    <span>Iniciar sesión</span>
+                  </Nav.Link>
+                  : <span>{user}</span>
+              }
+
               <Nav.Link as={Link} to="/login" className="d-flex align-items-center gap-2">
                 <span className="me-2">|</span>
                 <i className="bi bi-search" aria-hidden="true"></i>
